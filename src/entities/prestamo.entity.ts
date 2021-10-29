@@ -5,14 +5,14 @@ import { Usuario } from './usuario.entity';
 @Entity()
 export class Prestamos {
 
-  @Column()
+  @Column({default:true})
   esActivo: boolean;
 
   @ManyToOne(type => Usuario, usuario => usuario.id_usuario, { primary: true })
-  usuario: Usuario;
+  usuario: number;
 
 
   @ManyToOne(type => Libro, libro => libro.id_libro, { primary: true })
-  libro: Libro;
+  libro: number;
 
 }

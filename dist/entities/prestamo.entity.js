@@ -16,16 +16,16 @@ const usuario_entity_1 = require("./usuario.entity");
 let Prestamos = class Prestamos {
 };
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: true }),
     __metadata("design:type", Boolean)
 ], Prestamos.prototype, "esActivo", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(type => usuario_entity_1.Usuario, usuario => usuario.id_usuario, { primary: true }),
-    __metadata("design:type", usuario_entity_1.Usuario)
+    __metadata("design:type", Number)
 ], Prestamos.prototype, "usuario", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(type => libro_entity_1.Libro, libro => libro.id_libro, { primary: true }),
-    __metadata("design:type", libro_entity_1.Libro)
+    __metadata("design:type", Number)
 ], Prestamos.prototype, "libro", void 0);
 Prestamos = __decorate([
     (0, typeorm_1.Entity)()

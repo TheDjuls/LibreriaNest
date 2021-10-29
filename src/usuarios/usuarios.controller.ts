@@ -1,5 +1,6 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Res } from '@nestjs/common';
 import { authDTO } from './dto/login.dto';
+import { CreateUsuarioDTO } from './dto/usuario.dto';
 import { UsuariosService } from './usuarios.service';
 
 @Controller('usuarios')
@@ -19,6 +20,13 @@ export class UsuariosController {
     @Get(':id')
     async getById(@Res() res,@Param() params){
         const usuario = await this.__usuarioService.findById(params.id)
+        if(!usuario) throw new HttpException('Ha ocurrido un error',HttpStatus.FORBIDDEN)
+        res.status(HttpStatus.OK).send(usuario)
+    }
+
+    @Post("save")
+    async saveUsuario(@Res() res, @Body() createUsuarioDTO:CreateUsuarioDTO){
+        const usuario = await this.__usuarioService.saveUsuario(createUsuarioDTO)
         if(!usuario) throw new HttpException('Ha ocurrido un error',HttpStatus.FORBIDDEN)
         res.status(HttpStatus.OK).send(usuario)
     }

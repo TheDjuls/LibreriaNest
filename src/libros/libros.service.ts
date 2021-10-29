@@ -12,7 +12,7 @@ export class LibrosService {
     ){}
 
     async findAll(): Promise<Libro[]> {
-        const libros = await this.libroRepository.find();
+        const libros = await this.libroRepository.query(`SELECT *,(SELECT COUNT(*) FROM prestamos p WHERE p."libroIdLibro"=L.id_libro AND p."esActivo"=TRUE) prestado FROM libro L`);
         return libros
     }
 

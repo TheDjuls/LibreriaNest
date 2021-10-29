@@ -16,6 +16,10 @@ const usuario_entity_1 = require("./usuario.entity");
 let Prestamos = class Prestamos {
 };
 __decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Prestamos.prototype, "id_prestamo", void 0);
+__decorate([
     (0, typeorm_1.Column)({ default: true }),
     __metadata("design:type", Boolean)
 ], Prestamos.prototype, "esActivo", void 0);

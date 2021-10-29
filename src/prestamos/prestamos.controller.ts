@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, HttpException, HttpStatus, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Res } from '@nestjs/common';
 import { CreatePrestamoDTO } from './dto/prestamo.dto';
 import { PrestamosService } from './prestamos.service';
 
@@ -7,6 +7,13 @@ export class PrestamosController {
 
     constructor(private __prestamoService:PrestamosService){
 
+    }
+
+    @Get(":usuario")
+    async getPrestamosxUsuario(@Res() res,@Param() params){
+        const prestamo = await this.__prestamoService.getPrestamosXUsuario(params.usuario)
+        if(!prestamo) throw new HttpException('Ha ocurrido un error',HttpStatus.FORBIDDEN)
+        res.status(HttpStatus.OK).send(prestamo)
     }
 
     @Post("save")

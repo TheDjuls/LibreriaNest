@@ -25,8 +25,13 @@ export class UsuariosService {
     }
 
     async findById(id: number): Promise<Usuario> {
-        const usuario = await this.usuarioRepository.findOne(id);
-        return usuario
+        try{
+            const usuario = await this.usuarioRepository.findOne(id);
+             return usuario
+        }catch(error){
+            console.log(error)
+            return
+        }
     }
 
     async saveUsuario(createUsuarioDTO: CreateUsuarioDTO): Promise<InsertResult> {
